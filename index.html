@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TJ Course Guide!</title> <!--Main Title for the site(the thing that appears on the tab)-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!--Includes FontAwesome Icons and Library -->
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0; /* Optional: Set a background color */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .dark-mode {
+            background-color: #2c2c2c;
+            color: black;
+        }
+
+        .dark-mode .icon-link {
+            color: #d3d3d3;
+        }
+
+        .dark-mode .icon-link span {
+            color: black;
+        }
+
+        .dark-mode .center-title, .dark-mode .center-para {
+            color: white;
+        }
+
+        .dark-mode .toggle-text {
+            color: white;
+        }
+
+        .toggle-switch-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .toggle-switch input {
+            display: none;
+        }
+
+        .slider {
+            width: 50px;
+            height: 24px;
+            background-color: #ccc;
+            border-radius: 34px;
+            position: relative;
+            transition: background-color 0.3s;
+        }
+
+        .slider:before {
+            content: "";
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background-color: white;
+            top: 3px;
+            left: 3px;
+            transition: transform 0.3s;
+        }
+
+        input:checked + .slider {
+            background-color: #ff6666; /* Light red color */
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .icon-container {
+            display: flex;
+            gap: 70px; /* Adjust spacing between icons */
+            margin-top: 20px; /* Space between sections */
+            justify-content: center;
+        }
+
+        .icon-link {
+            position: relative;
+            text-decoration: none;
+            color: black;
+            display: inline-block;
+            width: 180px; /* Adjust based on icon size */
+            height: 140px; /* Adjust based on icon size */
+            text-align: center;
+        }
+
+        .icon-link i {
+            font-size: 150px; /* Adjust this value to change the size of the icons */
+            line-height: 120px; /* Match this to the height for vertical centering */
+        }
+
+        .icon-link span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px; /* Adjust based on your preference */
+            color: white; /* Text color */
+            width: 120px; /* Restrict text width */
+            white-space: normal; /* Allow text to wrap */
+            word-wrap: break-word; /* Allow breaking words */
+            text-align: center; /* Center the text horizontally */
+        }
+
+        .center-title, .center-para {
+            text-align: center;
+        }
+
+        .center-title {
+            font-size: 60px;
+        }
+
+        .center-para {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="toggle-switch-container">
+        <label class="toggle-switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+        <span class="toggle-text">Toggle Viewing Mode</span>
+    </div>
+
+    <h1 class="center-title">TJ Course Guide!</h1> <!--Main Title for the page-->
+    <p class="center-para">TJ Students got a lot on their plate. Don't let that cause you to make bad decisions about your courses!</p>
+
+    <div class="icon-container core_courses">
+        <a href="math.html" class="icon-link"><i class="fa-solid fa-cloud"></i> <span>Math</span></a>
+        <a href="english.html" class="icon-link"><i class="fa-solid fa-cloud"></i> <span>English</span></a>
+        <a href="science.html" class="icon-link"><i class="fa-solid fa-cloud"></i> <span>Science</span></a>
+        <a href="history.html" class="icon-link"><i class="fa-solid fa-cloud"></i> <span>History</span></a>
+    </div>
+
+    <div class="icon-container pathways">
+        <a href="cspath.html" class="icon-link"><i class="fa-solid fa-cloud"></i> <span>CS</span></a>
+        <a href="biochempath.html" class="icon-link"><i class="fa-solid fa-cloud"></i> <span>Bio/Chem</span></a>
+        <a href="engineeringphysicspath.html" class="icon-link"><i class="fa-solid fa-cloud"></i> <span>Engineering & Physics</span></a>
+    </div>
+
+    <div class="icon-container others">
+        <a href="otherelectives.html" class="icon-link"><i class="fa-solid fa-cloud"></i> <span>Other Electives</span></a>
+    </div>
+
+    <script>
+        const toggleSwitch = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const toggleText = document.querySelector('.toggle-text');
+
+        // Check localStorage for dark mode preference on page load
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            toggleSwitch.checked = true;
+        }
+
+        // Event listener for the toggle switch
+        toggleSwitch.addEventListener('change', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+    </script>
+</body>
+</html>
